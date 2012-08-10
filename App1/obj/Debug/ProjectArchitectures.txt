@@ -1,0 +1,2 @@
+C:\Dropbox\Kinect\KinectLight\App1\App1.csproj;neutral
+C:\Dropbox\Kinect\KinectLight\KinectLight.Core\KinectLight.Core.csproj;neutral

@@ -1,0 +1,17 @@
+D:\Documents\sync\db\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\KinectLight.Desktop.exe.config
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\KinectLight.Desktop.exe.config
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.Desktop.csprojResolveAssemblyReference.cache
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.Desktop.Properties.Resources.resources
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.Desktop.csproj.GenerateResource.Cache
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\KinectLight.Desktop.exe
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\KinectLight.Desktop.pdb
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\SharpDX.D3DCompiler.dll
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\SharpDX.Direct3D11.dll
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\SharpDX.dll
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\SharpDX.DXGI.dll
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\SharpDX.xml
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\SharpDX.D3DCompiler.xml
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\SharpDX.Direct3D11.xml
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\SharpDX.DXGI.xml
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.Desktop.exe
+C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.Desktop.pdb

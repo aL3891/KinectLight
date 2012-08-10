@@ -1,0 +1,10 @@
+C:\Dropbox\Kinect\KinectLight\KinectLight.Core\bin\Debug\KinectLight.Core.dll
+C:\Dropbox\Kinect\KinectLight\KinectLight.Core\bin\Debug\KinectLight.Core.pdb
+C:\Dropbox\Kinect\KinectLight\KinectLight.Core\bin\Debug\KinectLight.Core.pri
+C:\Dropbox\Kinect\KinectLight\KinectLight.Core\obj\Debug\KinectLight.Core.dll
+C:\Dropbox\Kinect\KinectLight\KinectLight.Core\obj\Debug\KinectLight.Core.pdb
+C:\Dropbox\Kinect\KinectLight\KinectLight.Core\obj\Debug\priconfig.xml
+C:\Dropbox\Kinect\KinectLight\KinectLight.Core\obj\Debug\layout.resfiles
+C:\Dropbox\Kinect\KinectLight\KinectLight.Core\obj\Debug\resources.resfiles
+C:\Dropbox\Kinect\KinectLight\KinectLight.Core\obj\Debug\pri.resfiles
+C:\Dropbox\Kinect\KinectLight\KinectLight.Core\obj\Debug\LanguageQualifiers.txt
