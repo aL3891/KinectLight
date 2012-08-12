@@ -73,8 +73,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="BadThing.cs" />
+    <Compile Include="GoodThing.cs" />
+    <Compile Include="MainGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SkeletonRenderer.cs" />
+    <Compile Include="ThingBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

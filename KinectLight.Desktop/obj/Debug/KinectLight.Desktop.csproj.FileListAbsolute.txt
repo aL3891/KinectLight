@@ -15,3 +15,6 @@ C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\SharpDX.Direct3D11.x
 C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\bin\Debug\SharpDX.DXGI.xml
 C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.Desktop.exe
 C:\Dropbox\Kinect\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.Desktop.pdb
+C:\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\KinectLight.Desktop.exe.config
+C:\Dropbox\git\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.Desktop.exe
+C:\Dropbox\git\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.Desktop.pdb
