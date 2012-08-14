@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SharpDX.Direct3D11;
+using SharpDX.Direct2D1;
 
 namespace KinectLight.Core
 {
@@ -13,19 +14,13 @@ namespace KinectLight.Core
         Stopwatch gameTime = new Stopwatch();
         RenderTarget device = null;
 
-
-        
-
         public void Run() {
-            
             while (true)
             {
                 var currentTime = gameTime.ElapsedMilliseconds;
-        
                 Update(currentTime);
                 Render();
             }
-
         }
 
         public void Update(long gameTime) { 
@@ -38,7 +33,7 @@ namespace KinectLight.Core
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

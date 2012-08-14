@@ -7,6 +7,7 @@ using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
 using SharpDX.DXGI;
 using SharpDX.Windows;
+using SharpDX.Direct2D1;
 
 namespace KinectLight.Desktop
 {
@@ -37,12 +38,27 @@ namespace KinectLight.Desktop
             SharpDX.Direct3D11.Device device;
             SwapChain swapChain;
             SharpDX.Direct3D11.Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.None, desc, out device, out swapChain);
-            var context = device.ImmediateContext;
+
+            var d2dFactory = new SharpDX.Direct2D1.Factory();
+
+            Texture2D backBuffer = Texture2D.FromSwapChain<Texture2D>(swapChain, 0);
+            var renderView = new RenderTargetView(device, backBuffer);
+
+            Surface surface = backBuffer.QueryInterface<Surface>();
+
+
+            var d2dRenderTarget = new RenderTarget(d2dFactory, surface, new RenderTargetProperties(new PixelFormat(Format.Unknown, AlphaMode.Premultiplied)));
+            RenderLoop.Run(form, () =>
+            {
+
+
+                swapChain.Present(0, PresentFlags.None);
+            });
 
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
         }
     }
 }

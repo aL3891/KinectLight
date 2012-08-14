@@ -22,7 +22,7 @@ namespace KinectLight.Core
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
