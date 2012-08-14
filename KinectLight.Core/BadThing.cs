@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace KinectLight.Core
 {
-    class BadThing
+    public class BadThing : ThingBase
     {
+
     }
 }

@@ -11,11 +11,13 @@ namespace KinectLight.Core
     public class MainGame : IDisposable
     {
         Stopwatch gameTime = new Stopwatch();
-        DeviceContext device = null;
+        RenderTarget device = null;
 
+
+        
 
         public void Run() {
-            bäver
+            
             while (true)
             {
                 var currentTime = gameTime.ElapsedMilliseconds;
