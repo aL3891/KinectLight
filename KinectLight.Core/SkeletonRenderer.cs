@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace KinectLight.Core
 {
-    class SkeletonRenderer
+    public class SkeletonRenderer
     {
+
+
     }
 }
