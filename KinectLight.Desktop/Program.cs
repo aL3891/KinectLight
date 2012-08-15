@@ -39,12 +39,12 @@ namespace KinectLight.Desktop
             SwapChain swapChain;
             SharpDX.Direct3D11.Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.None, desc, out device, out swapChain);
 
+            SharpDX.DXGI.Device1.
+
             var d2dFactory = new SharpDX.Direct2D1.Factory();
 
-            Texture2D backBuffer = Texture2D.FromSwapChain<Texture2D>(swapChain, 0);
-            var renderView = new RenderTargetView(device, backBuffer);
 
-            Surface surface = backBuffer.QueryInterface<Surface>();
+            var surface = Surface.FromSwapChain(swapChain, 0);
 
 
             var d2dRenderTarget = new RenderTarget(d2dFactory, surface, new RenderTargetProperties(new PixelFormat(Format.Unknown, AlphaMode.Premultiplied)));
@@ -56,9 +56,14 @@ namespace KinectLight.Desktop
             });
 
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
+            d2dRenderTarget.Dispose();
+            surface.Dispose();
+            d2dFactory.Dispose();
+            device.ClearState();
+            device.Flush();
+            device.Dispose();
+            device.Dispose();
+            swapChain.Dispose();
         }
     }
 }
