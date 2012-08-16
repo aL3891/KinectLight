@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SharpDX.Direct3D;
-using SharpDX.Direct3D11;
+
+using KinectLight.Core;
+using System.Diagnostics;
+using SharpDX;
+using SharpDX.Direct2D1;
+using SharpDX.Direct3D10;
 using SharpDX.DXGI;
 using SharpDX.Windows;
-using SharpDX.Direct2D1;
 
 namespace KinectLight.Desktop
 {
@@ -35,33 +38,38 @@ namespace KinectLight.Desktop
                 Usage = Usage.RenderTargetOutput
             };
 
-            SharpDX.Direct3D11.Device device;
+            SharpDX.Direct3D10.Device1 device;
             SwapChain swapChain;
-            SharpDX.Direct3D11.Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.None, desc, out device, out swapChain);
-
-            SharpDX.DXGI.Device1.
+            SharpDX.Direct3D10.Device1.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.BgraSupport, desc, SharpDX.Direct3D10.FeatureLevel.Level_10_0, out device, out swapChain);
 
             var d2dFactory = new SharpDX.Direct2D1.Factory();
+            //var surface = Surface.FromSwapChain(swapChain, 0);
 
-
-            var surface = Surface.FromSwapChain(swapChain, 0);
-
+            Texture2D backBuffer = Texture2D.FromSwapChain<Texture2D>(swapChain, 0);
+            Surface surface = backBuffer.QueryInterface<Surface>();
 
             var d2dRenderTarget = new RenderTarget(d2dFactory, surface, new RenderTargetProperties(new PixelFormat(Format.Unknown, AlphaMode.Premultiplied)));
+
+            MainGame game = new MainGame();
+
+            Stopwatch gameTime = new Stopwatch();
+            gameTime.Start();
+
             RenderLoop.Run(form, () =>
             {
-
-
+                var currentTime = gameTime.ElapsedMilliseconds;
+                game.Update(currentTime);
+                d2dRenderTarget.BeginDraw();
+                d2dRenderTarget.Clear(Colors.Black);
+                game.Render(d2dRenderTarget);
+                var res  = d2dRenderTarget.EndDraw();
                 swapChain.Present(0, PresentFlags.None);
             });
 
-
+            game.Dispose();
             d2dRenderTarget.Dispose();
             surface.Dispose();
             d2dFactory.Dispose();
-            device.ClearState();
-            device.Flush();
-            device.Dispose();
             device.Dispose();
             swapChain.Dispose();
         }

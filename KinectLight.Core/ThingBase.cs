@@ -4,25 +4,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SharpDX;
+using SharpDX.Direct2D1;
 
 namespace KinectLight.Core
 {
-    public class ThingBase: IDisposable
+    public class ThingBase : IDisposable
     {
-        Vector3 position, velocity;
 
-        public virtual void Render() { 
-        
+
+        public Vector3 Position { get; set; }
+        public Vector3 Velocity { get; set; }
+        Brush Fill = null, Stroke = null;
+
+        bool initialized = false;
+
+        public virtual void Render()
+        {
+
         }
 
 
-        public virtual void Initialize() { 
-        
+        public virtual void Initialize()
+        {
+
         }
 
         public void Dispose()
         {
-            
+
+        }
+
+        internal void Update(long gameTime)
+        {
+            Position = Position + (Velocity * (gameTime /1000f));
+        }
+
+
+        internal void InitializeResources(RenderTarget d2dRenderTarget)
+        {
+            if (!initialized)
+            {
+                Fill = new SolidColorBrush(d2dRenderTarget, Colors.Green);
+                Stroke = new SolidColorBrush(d2dRenderTarget, Colors.Azure);
+                initialized = true;
+            }
+
+        }
+
+        internal void Render(RenderTarget d2dRenderTarget)
+        {
+            InitializeResources(d2dRenderTarget);
+
+            d2dRenderTarget.Transform = Matrix.Translation(Position);
+            d2dRenderTarget.FillRectangle(new RectangleF(-20, -20, 20, 20), Fill);
+            d2dRenderTarget.DrawRectangle(new RectangleF(-20, -20, 20, 20), Stroke);
         }
     }
 }

@@ -49,3 +49,7 @@ D:\Documents\sync\db\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\Sharp
 D:\Documents\sync\db\Dropbox\git\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.Desktop.csprojResolveAssemblyReference.cache
 D:\Documents\sync\db\Dropbox\git\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.Desktop.Properties.Resources.resources
 D:\Documents\sync\db\Dropbox\git\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.Desktop.csproj.GenerateResource.Cache
+D:\Documents\sync\db\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\KinectLight.Core.Net45.dll
+D:\Documents\sync\db\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\KinectLight.Core.Net45.pdb
+D:\Documents\sync\db\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\SharpDX.Direct3D10.dll
+D:\Documents\sync\db\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\SharpDX.Direct3D10.xml
