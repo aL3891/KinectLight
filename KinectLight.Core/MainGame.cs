@@ -22,11 +22,11 @@ namespace KinectLight.Core
         {
             for (int i = 0; i < 10; i++)
             {
-                things.Add(new GoodThing() { Position = new Vector3((i * 50)+50,100, 0), Velocity = new Vector3(0,0.1f,0) });
+                things.Add(new GoodThing() { Position = new Vector3((i * 50)+50,100, 0), Velocity = new Vector3(0,20f,0) });
             }
         }
 
-        public void Update(long gameTime)
+        public void Update(GameTime gameTime)
         {
             foreach (var thing in things)
                 thing.Update(gameTime);

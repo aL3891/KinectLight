@@ -34,9 +34,9 @@ namespace KinectLight.Core
 
         }
 
-        internal void Update(long gameTime)
+        internal void Update(GameTime gameTime)
         {
-            Position = Position + (Velocity * (gameTime /1000f));
+            Position = Position + (Velocity * (float)(gameTime.FrameDeltaTime /1000));
         }
 
 

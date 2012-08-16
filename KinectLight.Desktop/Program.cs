@@ -11,6 +11,7 @@ using SharpDX.Direct2D1;
 using SharpDX.Direct3D10;
 using SharpDX.DXGI;
 using SharpDX.Windows;
+using System.Threading;
 
 namespace KinectLight.Desktop
 {
@@ -52,18 +53,19 @@ namespace KinectLight.Desktop
 
             MainGame game = new MainGame();
 
-            Stopwatch gameTime = new Stopwatch();
-            gameTime.Start();
+            GameTime gameTime = new GameTime();
+
 
             RenderLoop.Run(form, () =>
             {
-                var currentTime = gameTime.ElapsedMilliseconds;
-                game.Update(currentTime);
+                gameTime.StartFrame();
+                game.Update(gameTime);
                 d2dRenderTarget.BeginDraw();
                 d2dRenderTarget.Clear(Colors.Black);
                 game.Render(d2dRenderTarget);
                 var res  = d2dRenderTarget.EndDraw();
                 swapChain.Present(0, PresentFlags.None);
+                Thread.Sleep(100);
             });
 
             game.Dispose();
