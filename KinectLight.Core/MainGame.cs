@@ -11,40 +11,45 @@ namespace KinectLight.Core
 {
     public class MainGame : IDisposable
     {
+        Random r = new Random();
+        List<ThingBase> _things = new List<ThingBase>();
+        SkeletonRenderer _skeleton = new SkeletonRenderer();
+        public double Height { get; set; }
+        public double Width { get; set; }
 
-        Factory d2dFactory;
-        
-
-        List<ThingBase> things = new List<ThingBase>();
-        SkeletonRenderer skeleton = new SkeletonRenderer();
 
         public MainGame()
         {
-            for (int i = 0; i < 10; i++)
-            {
-                things.Add(new GoodThing() { Position = new Vector3((i * 50)+50,100, 0), Velocity = new Vector3(0,20f,0) });
-            }
+
         }
 
         public void Update(GameTime gameTime)
         {
-            foreach (var thing in things)
+            foreach (var thing in _things)
                 thing.Update(gameTime);
 
+            foreach (var thing in _things.Where(t => t.Position.Y > Height).ToArray())
+            {
+                _things.Remove(thing);
+            }
+
+            if (_things.Count() < 10)
+                _things.Add(new GoodThing() { Position = new Vector3((float)(r.NextDouble() * Width), 0, 0), Velocity = new Vector3(0, 20+(float)(r.NextDouble() * 10), 0) });
 
 
         }
 
-        public void Render(RenderTarget d2dRenderTarget)
+        public void Render(RenderTarget target)
         {
-            foreach (var thing in things)
-                thing.Render(d2dRenderTarget);
+            foreach (var thing in _things)
+                thing.Render(target);
 
+            _skeleton.Render(target);
         }
 
         public void Dispose()
         {
-            foreach (var t in things)
+            foreach (var t in _things)
                 t.Dispose();
         }
 
