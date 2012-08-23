@@ -38,7 +38,7 @@ namespace KinectLight.Core
             }
             else {
                 Observable.Generate(new Skeleton(), s => true, s => {
-                    s.Joints[JointType.HandLeft] = new Joint() { Position = new SkeletonPoint { }, JointType= JointType.HandLeft };
+                    //s.Joints[JointType.HandLeft] = new Joint() { Position = new SkeletonPoint { }, JointType= JointType.HandLeft };
                     return s;
                 }, s => s, s => TimeSpan.FromMilliseconds(33));
             }
