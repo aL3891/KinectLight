@@ -15,6 +15,7 @@ namespace KinectLight.Core
         Random r = new Random();
         List<ThingBase> _things = new List<ThingBase>();
         SkeletonRenderer _skeleton = new SkeletonRenderer();
+        List<ThingBase> _thingsToRemove = new List<ThingBase>();
         public double Height { get; set; }
         public double Width { get; set; }
         public TextFormat TextFormat { get; private set; }
@@ -43,15 +44,29 @@ namespace KinectLight.Core
 
         public void Update(GameTime gameTime)
         {
-            foreach (var thing in _things)
-                thing.Update(gameTime);
 
-            foreach (var thing in _things.Where(t => t.Position.Y > Height).ToArray())
+
+            for (int i = 0; i < _things.Count; i++)
             {
-                _things.Remove(thing);
+                _things[i].Update(gameTime);
+                if (_skeleton.HitTest(_things[i]))
+                {
+                    _thingsToRemove.Add(_things[i]);
+                    Score++;
+                }
             }
 
-            if ( gameTime.WorldTime % 1000 == 0 && _things.Count() < 10)
+            foreach (var thing in _things.Where(t => t.Position.Y > Height))
+                _thingsToRemove.Add(thing);
+
+            for (int i = 0; i < _thingsToRemove.Count; i++)
+            {
+                _things.Remove(_thingsToRemove[i]);
+            }
+
+            _thingsToRemove.Clear();
+
+            if (gameTime.WorldTime % 1000 == 0 && _things.Count() < 10)
                 _things.Add(new GoodThing() { Position = new Vector3((float)(r.NextDouble() * Width), 0, 0), Velocity = new Vector3(0, 20 + (float)(r.NextDouble() * 10), 0) });
 
 

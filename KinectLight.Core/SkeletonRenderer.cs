@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reactive;
 using System.Reactive.Linq;
+using SharpDX;
 
 namespace KinectLight.Core
 {
@@ -14,6 +15,7 @@ namespace KinectLight.Core
     {
         KinectSensor sensor = null;
         IObservable<Skeleton> skeletonStream = null;
+        Matrix _skeletonTransform = Matrix.Identity;
 
         public SkeletonRenderer()
         {
@@ -23,7 +25,6 @@ namespace KinectLight.Core
             {
                 sensor.SkeletonStream.Enable();
                 sensor.Start();
-                sensor.SkeletonFrameReady += sensor_SkeletonFrameReady;
 
                 skeletonStream = Observable.FromEventPattern<SkeletonFrameReadyEventArgs>(eh => sensor.SkeletonFrameReady += eh, eh => sensor.SkeletonFrameReady -= eh)
                         .Select(frameReady =>
@@ -35,9 +36,13 @@ namespace KinectLight.Core
                                 return res[0];
                             }
                         });
+
+                var apa = skeletonStream.Select(s =>  new Vector3(s.Joints[JointType.HandLeft].Position.X, s.Joints[JointType.HandLeft].Position.Y, s.Joints[JointType.HandLeft].Position.Z));
             }
-            else {
-                Observable.Generate(new Skeleton(), s => true, s => {
+            else
+            {
+                Observable.Generate(new Skeleton(), s => true, s =>
+                {
                     //s.Joints[JointType.HandLeft] = new Joint() { Position = new SkeletonPoint { }, JointType= JointType.HandLeft };
                     return s;
                 }, s => s, s => TimeSpan.FromMilliseconds(33));
@@ -45,14 +50,15 @@ namespace KinectLight.Core
 
         }
 
-        void sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Render(RenderTarget target)
         {
 
+        }
+
+        internal bool HitTest(ThingBase thing)
+        {
+            return Vector3.Distance(thing.Position, thing.Position) < 20;
         }
     }
 }
