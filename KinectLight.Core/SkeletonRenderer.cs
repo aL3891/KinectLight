@@ -58,6 +58,7 @@ namespace KinectLight.Core
 
         internal bool HitTest(ThingBase thing)
         {
+            return false;
             return Vector3.Distance(thing.Position, thing.Position) < 20;
         }
     }

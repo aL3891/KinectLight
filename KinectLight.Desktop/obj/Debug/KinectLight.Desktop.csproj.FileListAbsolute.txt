@@ -81,3 +81,15 @@ D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Desktop\obj\Debug\KinectLi
 D:\Documents\sync\db\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\KinectLight.exe.config
 D:\Documents\sync\db\Dropbox\git\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.exe
 D:\Documents\sync\db\Dropbox\git\KinectLight\KinectLight.Desktop\obj\Debug\KinectLight.pdb
+D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\Newtonsoft.Json.dll
+D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\System.Net.Http.dll
+D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\System.Net.Http.Formatting.dll
+D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\System.Net.Http.WebRequest.dll
+D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\System.Web.Http.dll
+D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\System.Web.Http.SelfHost.dll
+D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\Newtonsoft.Json.xml
+D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\System.Net.Http.xml
+D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\System.Net.Http.Formatting.xml
+D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\System.Net.Http.WebRequest.xml
+D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\System.Web.Http.xml
+D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Desktop\bin\Debug\System.Web.Http.SelfHost.xml
