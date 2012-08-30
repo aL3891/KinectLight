@@ -20,7 +20,16 @@ namespace KinectLight.Core
 
         public double FrameDeltaTime = 0;
 
-        public void StartFrame() {
+        public double WorldTime
+        {
+            get
+            {
+                return stopWatch.ElapsedMilliseconds;
+            }
+        }
+
+        public void StartFrame()
+        {
             FrameDeltaTime = stopWatch.Elapsed.TotalMilliseconds - lastFrame;
             lastFrame = stopWatch.ElapsedMilliseconds;
         }
