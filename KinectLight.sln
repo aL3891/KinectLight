@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinectLight.Desktop", "Kine
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinectLight.Core", "KinectLight.Core\KinectLight.Core.csproj", "{5C5AABE7-D125-4A21-A425-9A83247BDDEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinectLight.ScoreApi", "..\..\Users\anpo\Desktop\KinectLight.ScoreApi\KinectLight.ScoreApi.csproj", "{3CF9AC30-D5EE-478C-9402-B21D4894D924}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,16 @@ Global
 		{5C5AABE7-D125-4A21-A425-9A83247BDDEC}.Release|ARM.ActiveCfg = Release|Any CPU
 		{5C5AABE7-D125-4A21-A425-9A83247BDDEC}.Release|x64.ActiveCfg = Release|Any CPU
 		{5C5AABE7-D125-4A21-A425-9A83247BDDEC}.Release|x86.ActiveCfg = Release|Any CPU
+		{3CF9AC30-D5EE-478C-9402-B21D4894D924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CF9AC30-D5EE-478C-9402-B21D4894D924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CF9AC30-D5EE-478C-9402-B21D4894D924}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{3CF9AC30-D5EE-478C-9402-B21D4894D924}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3CF9AC30-D5EE-478C-9402-B21D4894D924}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3CF9AC30-D5EE-478C-9402-B21D4894D924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CF9AC30-D5EE-478C-9402-B21D4894D924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CF9AC30-D5EE-478C-9402-B21D4894D924}.Release|ARM.ActiveCfg = Release|Any CPU
+		{3CF9AC30-D5EE-478C-9402-B21D4894D924}.Release|x64.ActiveCfg = Release|Any CPU
+		{3CF9AC30-D5EE-478C-9402-B21D4894D924}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
