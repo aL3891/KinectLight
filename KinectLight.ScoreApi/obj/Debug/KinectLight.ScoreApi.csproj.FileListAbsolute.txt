@@ -1,0 +1,12 @@
+C:\git\KinectLight\KinectLight.ScoreApi\bin\Debug\KinectLight.ScoreApi.dll
+C:\git\KinectLight\KinectLight.ScoreApi\bin\Debug\KinectLight.ScoreApi.pdb
+C:\git\KinectLight\KinectLight.ScoreApi\obj\Debug\KinectLight.ScoreApi.dll
+C:\git\KinectLight\KinectLight.ScoreApi\obj\Debug\KinectLight.ScoreApi.pdb
+C:\git\KinectLight\KinectLight.ScoreApi\bin\Debug\ServiceStack.Text.dll
+C:\git\KinectLight\KinectLight.ScoreApi\bin\Debug\ServiceStack.Text.pdb
+C:\git\KinectLight\KinectLight.ScoreApi\bin\Debug\ServiceStack.Text.xml
+C:\git\KinectLight\KinectLight.ScoreApi\bin\Debug\System.Net.Http.dll
+C:\git\KinectLight\KinectLight.ScoreApi\bin\Debug\System.Net.Http.xml
+C:\git\KinectLight\KinectLight.ScoreApi\obj\Debug\KinectLight.ScoreApi.csprojResolveAssemblyReference.cache
+C:\git\KinectLight\KinectLight.ScoreApi\bin\Debug\System.Net.Http.WebRequest.dll
+C:\git\KinectLight\KinectLight.ScoreApi\bin\Debug\System.Net.Http.WebRequest.xml
