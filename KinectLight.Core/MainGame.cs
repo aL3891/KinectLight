@@ -90,7 +90,7 @@ namespace KinectLight.Core
 
             _thingsToRemove.Clear();
 
-            if (gameTime.WorldTime % 1000 == 0 && _things.Count() < 10)
+            if (gameTime.WorldTime % 1000 > 1 && _things.Count() < 10)
                 _things.Add(new GoodThing() { Position = new Vector3((float)(r.NextDouble() * Width), 0, 0), Velocity = new Vector3(0, 20 + (float)(r.NextDouble() * 10), 0) });
 
 

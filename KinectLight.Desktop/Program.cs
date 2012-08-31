@@ -25,6 +25,7 @@ namespace KinectLight.Desktop
         static void Main()
         {
             var form = new RenderForm("KinectLight");
+            form.Size = new System.Drawing.Size(1920,1200);
 
             var desc = new SwapChainDescription()
             {
@@ -73,8 +74,8 @@ namespace KinectLight.Desktop
                 dc.Clear(Colors.Black);
                 MainGame.Instance.Render(dc);
                 var res = dc.EndDraw();
-                swapChain.Present(0, PresentFlags.None);
-                Thread.Sleep(1);
+                swapChain.Present(1, PresentFlags.None);
+                //Thread.Sleep(1);
             });
 
             server.Dispose();
