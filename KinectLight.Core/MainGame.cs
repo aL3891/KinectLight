@@ -106,9 +106,8 @@ namespace KinectLight.Core
             _skeleton.Render(target);
 
             target.Transform = Matrix3x2.Identity;
-            target.DrawText("Player: " + Player, TextFormat, new RectangleF(5, 5, 200, 70), SceneColorBrush);
-            target.DrawText("Score: " + Score, TextFormat, new RectangleF(5, 80, 200, 70), SceneColorBrush);
-
+            target.DrawText("Player: " + Player, TextFormat, new RectangleF(5, 5, 800, 70), SceneColorBrush);
+            target.DrawText("Score: " + Score, TextFormat, new RectangleF(5, 80, 800, 70), SceneColorBrush);
             
         }
 
@@ -116,6 +115,8 @@ namespace KinectLight.Core
         {
             foreach (var t in _things)
                 t.Dispose();
+
+            _skeleton.Dispose();
         }
 
     }
