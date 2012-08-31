@@ -7,12 +7,19 @@ using System.Web.Http;
 
 namespace KinectLight.Desktop
 {
-    public class KinectLightController :ApiController
+    public class KinectLightController : ApiController
     {
-        
-        public string Get(string name) {
-            MainGame.Instance.Player = name;
-            return "hiarg?";
+
+        [AcceptVerbs("PUT")]
+        public string ChangePlayer(string name)
+        {
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                MainGame.Instance.Player = name;
+                return "Done";
+            }
+            else
+                return "Player name must not be blank";
         }
     }
 }

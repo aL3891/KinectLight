@@ -40,7 +40,6 @@ D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Core\bin\Debug\SharpDX.Dir
 D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Core\bin\Debug\SharpDX.DXGI.xml
 D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Core\bin\Debug\System.Net.Http.xml
 D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Core\bin\Debug\System.Net.Http.WebRequest.xml
-D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Core\obj\Debug\KinectLight.Core.csprojResolveAssemblyReference.cache
 D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Core\obj\Debug\KinectLight.Core.dll
 D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Core\obj\Debug\KinectLight.Core.pdb
 D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.Core\bin\Debug\KinectLight.Core.dll

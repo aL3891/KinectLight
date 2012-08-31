@@ -11,22 +11,32 @@ using SharpDX;
 
 namespace KinectLight.Core
 {
-    public class SkeletonRenderer
+    public class SkeletonRenderer : IDisposable
     {
         KinectSensor sensor = null;
-        IObservable<Skeleton> skeletonStream = null;
+
         Matrix _skeletonTransform = Matrix.Identity;
+        Vector3 LeftPos = Vector3.Zero, RightPos = Vector3.Zero;
+        IDisposable skeletonStream;
+        Brush Fill = null, Stroke = null;
+        bool initialized = false;
 
         public SkeletonRenderer()
         {
             sensor = KinectSensor.KinectSensors.FirstOrDefault();
+
+            LeftPos.X = 100;
+            LeftPos.Y = 200;
+
+            RightPos.X = 300;
+            RightPos.Y = 200;
 
             if (sensor != null)
             {
                 sensor.SkeletonStream.Enable();
                 sensor.Start();
 
-                skeletonStream = Observable.FromEventPattern<SkeletonFrameReadyEventArgs>(eh => sensor.SkeletonFrameReady += eh, eh => sensor.SkeletonFrameReady -= eh)
+                var stream = Observable.FromEventPattern<SkeletonFrameReadyEventArgs>(eh => sensor.SkeletonFrameReady += eh, eh => sensor.SkeletonFrameReady -= eh)
                         .Select(frameReady =>
                         {
                             using (var frame = frameReady.EventArgs.OpenSkeletonFrame())
@@ -37,7 +47,11 @@ namespace KinectLight.Core
                             }
                         });
 
-                var apa = skeletonStream.Select(s =>  new Vector3(s.Joints[JointType.HandLeft].Position.X, s.Joints[JointType.HandLeft].Position.Y, s.Joints[JointType.HandLeft].Position.Z));
+                skeletonStream = stream.Subscribe(s =>
+                {
+                    var left = sensor.MapSkeletonPointToDepth(s.Joints[JointType.HandLeft].Position, DepthImageFormat.Resolution640x480Fps30);
+                    var right = sensor.MapSkeletonPointToDepth(s.Joints[JointType.HandLeft].Position, DepthImageFormat.Resolution640x480Fps30);
+                });
             }
             else
             {
@@ -50,16 +64,44 @@ namespace KinectLight.Core
 
         }
 
+        internal void InitializeResources(RenderTarget d2dRenderTarget)
+        {
+            if (!initialized)
+            {
+                Fill = new SolidColorBrush(d2dRenderTarget, Colors.Purple);
+                Stroke = new SolidColorBrush(d2dRenderTarget, Colors.Plum);
+                initialized = true;
+            }
+        }
 
         public void Render(RenderTarget target)
         {
+            InitializeResources(target);
+            target.Transform = Matrix.Identity;
+            
+            target.FillEllipse(new Ellipse(new DrawingPointF(LeftPos.X,LeftPos.Y), 20, 20), Fill);
+            target.DrawEllipse(new Ellipse(new DrawingPointF(LeftPos.X, LeftPos.Y), 20, 20), Stroke);
 
+
+            target.FillEllipse(new Ellipse(new DrawingPointF(RightPos.X, RightPos.Y), 20, 20), Fill);
+            target.DrawEllipse(new Ellipse(new DrawingPointF(RightPos.X, RightPos.Y), 20, 20), Stroke);
         }
 
         internal bool HitTest(ThingBase thing)
         {
-            return false;
-            return Vector3.Distance(thing.Position, thing.Position) < 20;
+            return Vector3.Distance(thing.Position, LeftPos) < 45 || Vector3.Distance(thing.Position, RightPos) < 45;
+        }
+
+        public void Dispose()
+        {
+            if (sensor != null)
+            {
+                sensor.Stop();
+
+                skeletonStream.Dispose();
+
+                sensor.Dispose();
+            }
         }
     }
 }

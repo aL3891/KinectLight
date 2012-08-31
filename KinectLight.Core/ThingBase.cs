@@ -48,7 +48,6 @@ namespace KinectLight.Core
                 Stroke = new SolidColorBrush(d2dRenderTarget, Colors.Azure);
                 initialized = true;
             }
-
         }
 
         internal void Render(RenderTarget d2dRenderTarget)
