@@ -23,29 +23,17 @@ namespace KinectLight.Core
 
         public SkeletonRenderer()
         {
-            sensor = KinectSensor.KinectSensors.FirstOrDefault(s => s.Status == KinectStatus.Connected);
+            sensor = KinectSensor.KinectSensors.FirstOrDefault();
 
-            LeftPos.X = 400;
-            LeftPos.Y = 400;
+            LeftPos.X = 100;
+            LeftPos.Y = 200;
 
-            RightPos.X = 900;
-            RightPos.Y = 400;
-
-
+            RightPos.X = 300;
+            RightPos.Y = 200;
 
             if (sensor != null)
             {
-
-                
-                sensor.SkeletonStream.Enable( new TransformSmoothParameters
-                                             {
-                                                 Smoothing = 0.5f,
-                                                 Correction = 0.5f,
-                                                 Prediction = 0.5f,
-                                                 JitterRadius = 0.1f,
-                                                 MaxDeviationRadius = 0.04f
-                                             });
-                sensor.DepthStream.Enable();
+                sensor.SkeletonStream.Enable();
                 sensor.Start();
 
                 var stream = Observable.FromEventPattern<SkeletonFrameReadyEventArgs>(eh => sensor.SkeletonFrameReady += eh, eh => sensor.SkeletonFrameReady -= eh)
@@ -53,30 +41,27 @@ namespace KinectLight.Core
                         {
                             using (var frame = frameReady.EventArgs.OpenSkeletonFrame())
                             {
-                                if (frame != null)
-                                {
-                                    var res = new Skeleton[frame.SkeletonArrayLength];
-                                    frame.CopySkeletonDataTo(res);
-                                    return res.Where(r => r.TrackingState == SkeletonTrackingState.Tracked).OrderBy(r => r.Position.Z).FirstOrDefault();
-                                }
-                                else
-                                    return null;
+                                var res = new Skeleton[frame.SkeletonArrayLength];
+                                frame.CopySkeletonDataTo(res);
+                                return res[0];
                             }
-                        }).Where(s => s != null);
+                        });
 
                 skeletonStream = stream.Subscribe(s =>
                 {
                     var left = sensor.MapSkeletonPointToDepth(s.Joints[JointType.HandLeft].Position, DepthImageFormat.Resolution640x480Fps30);
-                    var right = sensor.MapSkeletonPointToDepth(s.Joints[JointType.HandRight].Position, DepthImageFormat.Resolution640x480Fps30);
-
-                    //positional data doesnt seem to go all the way to the edge for some reason
-                    LeftPos.X = (float)left.X / 440 * (float)MainGame.Instance.Height;
-                    LeftPos.Y = (float)left.Y / 640 * (float)MainGame.Instance.Width;
-
-                    RightPos.X = (float)right.X / 440 * (float)MainGame.Instance.Height;
-                    RightPos.Y = (float)right.Y / 640 * (float)MainGame.Instance.Width;
+                    var right = sensor.MapSkeletonPointToDepth(s.Joints[JointType.HandLeft].Position, DepthImageFormat.Resolution640x480Fps30);
                 });
             }
+            else
+            {
+                Observable.Generate(new Skeleton(), s => true, s =>
+                {
+                    //s.Joints[JointType.HandLeft] = new Joint() { Position = new SkeletonPoint { }, JointType= JointType.HandLeft };
+                    return s;
+                }, s => s, s => TimeSpan.FromMilliseconds(33));
+            }
+
         }
 
         internal void InitializeResources(RenderTarget d2dRenderTarget)
@@ -91,12 +76,10 @@ namespace KinectLight.Core
 
         public void Render(RenderTarget target)
         {
-
-            
             InitializeResources(target);
             target.Transform = Matrix.Identity;
-
-            target.FillEllipse(new Ellipse(new DrawingPointF(LeftPos.X, LeftPos.Y), 20, 20), Fill);
+            
+            target.FillEllipse(new Ellipse(new DrawingPointF(LeftPos.X,LeftPos.Y), 20, 20), Fill);
             target.DrawEllipse(new Ellipse(new DrawingPointF(LeftPos.X, LeftPos.Y), 20, 20), Stroke);
 
             target.FillEllipse(new Ellipse(new DrawingPointF(RightPos.X, RightPos.Y), 20, 20), Fill);
