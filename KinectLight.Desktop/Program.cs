@@ -12,6 +12,10 @@ using SharpDX.DXGI;
 using SharpDX.Direct3D10;
 using SharpDX.Direct2D1;
 using SharpDX;
+using System.Web.Http.SelfHost;
+using System.Web.Http;
+
+
 
 namespace KinectLight.Desktop
 {
@@ -42,22 +46,39 @@ namespace KinectLight.Desktop
 
             RenderTarget dc = new RenderTarget(d2dFactory, surface, new RenderTargetProperties(new PixelFormat(Format.Unknown, AlphaMode.Premultiplied)));
 
-            MainGame game = new MainGame() { Height = form.ClientSize.Height, Width = form.ClientSize.Width };
+            MainGame.Instance.Height = form.ClientSize.Height;
+            MainGame.Instance.Width = form.ClientSize.Width;
             GameTime gameTime = new GameTime();
+
+
+
+            var config = new HttpSelfHostConfiguration("http://localhost:8080");
+
+            config.Routes.MapHttpRoute(
+                "API Default", "api/{controller}/{action}/{name}",
+                new { id = RouteParameter.Optional });
+            
+
+            HttpSelfHostServer server = new HttpSelfHostServer(config);
+            server.OpenAsync().Wait();
+
+
+
 
             RenderLoop.Run(form, () =>
             {
                 gameTime.StartFrame();
-                game.Update(gameTime);
+                MainGame.Instance.Update(gameTime);
                 dc.BeginDraw();
                 dc.Clear(Colors.Black);
-                game.Render(dc);
+                MainGame.Instance.Render(dc);
                 var res = dc.EndDraw();
                 swapChain.Present(0, PresentFlags.None);
                 Thread.Sleep(1);
             });
 
-            game.Dispose();
+            server.Dispose();
+            MainGame.Instance.Dispose();
             dc.Dispose();
             surface.Dispose();
             d2dFactory.Dispose();

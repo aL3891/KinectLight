@@ -25,6 +25,16 @@ namespace KinectLight.Core
         public string Player { get; set; }
         public int Score { get; set; }
 
+        static MainGame _instance;
+
+        public static MainGame Instance {
+            get {
+
+                if (_instance == null)
+                    _instance = new MainGame();
+                return _instance;
+            }
+        }
 
         public MainGame()
         {
@@ -85,7 +95,7 @@ namespace KinectLight.Core
             target.DrawText("Player: " + Player, TextFormat, new RectangleF(5, 5, 200, 70), SceneColorBrush);
             target.DrawText("Score: " + Score, TextFormat, new RectangleF(5, 80, 200, 70), SceneColorBrush);
 
-            target.DrawText("Score: " + Score, TextFormat, new RectangleF(210, 80, 200, 70), SceneColorBrush);
+            
         }
 
         public void Dispose()
