@@ -9,7 +9,7 @@ namespace KinectLight.ScoreApi
 {
     public interface IScoreApi
     {
-        /// <summary>
+        /// <summary>D:\Documents\sync\Dropbox\git\KinectLight\KinectLight.ScoreApi\IScoreApi.cs
         /// Get single object or a list of objects
         /// </summary>
         /// <typeparam name="T">For single objects, e.g. GameDto. For a list; e.g. IList<GameDto></typeparam>
