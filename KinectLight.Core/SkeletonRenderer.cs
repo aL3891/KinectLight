@@ -82,7 +82,6 @@ namespace KinectLight.Core
             target.FillEllipse(new Ellipse(new DrawingPointF(LeftPos.X,LeftPos.Y), 20, 20), Fill);
             target.DrawEllipse(new Ellipse(new DrawingPointF(LeftPos.X, LeftPos.Y), 20, 20), Stroke);
 
-
             target.FillEllipse(new Ellipse(new DrawingPointF(RightPos.X, RightPos.Y), 20, 20), Fill);
             target.DrawEllipse(new Ellipse(new DrawingPointF(RightPos.X, RightPos.Y), 20, 20), Stroke);
         }

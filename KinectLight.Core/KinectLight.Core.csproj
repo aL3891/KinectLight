@@ -97,7 +97,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Users\anpo\Desktop\KinectLight.ScoreApi\KinectLight.ScoreApi.csproj">
+    <ProjectReference Include="..\KinectLight.ScoreApi\KinectLight.ScoreApi.csproj">
       <Project>{3CF9AC30-D5EE-478C-9402-B21D4894D924}</Project>
       <Name>KinectLight.ScoreApi</Name>
     </ProjectReference>
