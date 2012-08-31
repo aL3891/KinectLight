@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SharpDX.Direct2D1;
 using SharpDX;
 using SharpDX.DirectWrite;
+using KinectLight.ScoreApi;
 
 namespace KinectLight.Core
 {
@@ -22,8 +23,20 @@ namespace KinectLight.Core
         public SharpDX.DirectWrite.Factory FactoryDWrite { get; private set; }
         public SolidColorBrush SceneColorBrush { get; private set; }
         bool resourcesInitialized = false;
-        public string Player { get; set; }
+        private string _player;
+        public string Player 
+        {
+            get { return _player; }
+            set 
+            {
+                // Assumes that new game is indicated by a new player being set.
+                _scoreApi.PostScoreAsync<ScoreDto>(new ScoreDto { points = Score.ToString() }, Player, "kinectgame");
+                Score = 0;
+                _player = value;
+            } 
+        }
         public int Score { get; set; }
+        public IScoreApi _scoreApi;
 
         static MainGame _instance;
 
@@ -40,6 +53,7 @@ namespace KinectLight.Core
         {
             FactoryDWrite = new SharpDX.DirectWrite.Factory();
             TextFormat = new TextFormat(FactoryDWrite, "Arial", 32) { TextAlignment = TextAlignment.Leading, ParagraphAlignment = ParagraphAlignment.Center };
+            _scoreApi = new ScoreClient();
         }
 
         public void InitializeGlobalResources(RenderTarget target)
