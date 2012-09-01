@@ -10,7 +10,7 @@ namespace KinectLight.Desktop
     public class KinectLightController : ApiController
     {
 
-        [AcceptVerbs("PUT")]
+        [AcceptVerbs("GET")]
         public string ChangePlayer(string name)
         {
             if (!string.IsNullOrWhiteSpace(name))
