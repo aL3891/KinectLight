@@ -15,8 +15,8 @@ namespace KinectLight.Core
         public Vector3 Position { get; set; }
         public Vector3 Velocity { get; set; }
         Brush Fill = null, Stroke = null;
-
         bool initialized = false;
+        Bitmap texture = null;
 
         public virtual void Render()
         {
@@ -47,16 +47,16 @@ namespace KinectLight.Core
                 Fill = new SolidColorBrush(d2dRenderTarget, Colors.Green);
                 Stroke = new SolidColorBrush(d2dRenderTarget, Colors.Azure);
                 initialized = true;
+                texture = MainGame.LoadFromFile(d2dRenderTarget, "c:\apa.jpg");
             }
         }
 
         internal void Render(RenderTarget d2dRenderTarget)
         {
-            InitializeResources(d2dRenderTarget);
-
+            
             d2dRenderTarget.Transform = Matrix.Translation(Position);
-            d2dRenderTarget.FillRectangle(new RectangleF(-20, -20, 20, 20), Fill);
-            d2dRenderTarget.DrawRectangle(new RectangleF(-20, -20, 20, 20), Stroke);
+            d2dRenderTarget.DrawBitmap(texture,1, BitmapInterpolationMode.Linear);
+            
         }
     }
 }
