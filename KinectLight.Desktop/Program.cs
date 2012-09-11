@@ -71,7 +71,7 @@ namespace KinectLight.Desktop
                 gameTime.StartFrame();
                 MainGame.Instance.Update(gameTime);
                 dc.BeginDraw();
-                dc.Clear(Colors.Black);
+                dc.Clear(Colors.White);
                 MainGame.Instance.Render(dc);
                 var res = dc.EndDraw();
                 swapChain.Present(1, PresentFlags.None);

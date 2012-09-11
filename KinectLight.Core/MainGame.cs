@@ -26,19 +26,40 @@ namespace KinectLight.Core
         public SolidColorBrush SceneColorBrush { get; private set; }
         bool resourcesInitialized = false;
         private string _player;
-        public string Player 
+        public string Player
         {
             get { return _player; }
-            set 
+            set
             {
-                // Assumes that new game is indicated by a new player being set.
-                _scoreApi.PostScoreAsync<ScoreDto>(new ScoreDto { points = Score.ToString() }, Player, "kinectgame");
-                Score = 0;
+                if (!string.IsNullOrEmpty(_player))
+                {
+                    _scoreApi.PostScoreAsync<ScoreDto>(new ScoreDto { points = (Score*10).ToString() }, Player, "kinectgame");
+
+                }
+
+                if (!string.IsNullOrEmpty(value))
+                {
+                    PlayerStartTime = DateTime.Now;
+                    // Assumes that new game is indicated by a new player being set.
+                    _scoreApi.PostScoreAsync<ScoreDto>(new ScoreDto { points = Score.ToString() }, Player, "kinectgame");
+                    Score = 0;
+                    _player = value;
+
+                    playerActive = true;
+                }
+                else
+                {
+                    PlayerStartTime = DateTime.MinValue;
+                    playerActive = false;
+                }
+
                 _player = value;
-            } 
+            }
         }
         public int Score { get; set; }
         public IScoreApi _scoreApi;
+        DateTime PlayerStartTime = DateTime.MinValue;
+        bool playerActive = false;
 
         static MainGame _instance;
 
@@ -62,7 +83,7 @@ namespace KinectLight.Core
         {
             if (!resourcesInitialized)
             {
-                SceneColorBrush = new SolidColorBrush(target, Colors.White);
+                SceneColorBrush = new SolidColorBrush(target, Colors.Black);
                 resourcesInitialized = true;
             }
 
@@ -75,7 +96,7 @@ namespace KinectLight.Core
             for (int i = 0; i < _things.Count; i++)
             {
                 _things[i].Update(gameTime);
-                if (_skeleton.HitTest(_things[i]))
+                if (Player != "" && _skeleton.HitTest(_things[i]))
                 {
                     _thingsToRemove.Add(_things[i]);
                     Score++;
@@ -95,7 +116,14 @@ namespace KinectLight.Core
             if (gameTime.WorldTime % 1000 > 1 && _things.Count() < 10)
                 _things.Add(new GoodThing() { Position = new Vector3((float)(r.NextDouble() * Width), 0, 0), Velocity = new Vector3(0, 20 + (float)(r.NextDouble() * 10), 0) });
 
-
+            if (Player != "")
+            {
+                var playtime = DateTime.Now - PlayerStartTime;
+                if (playtime.TotalSeconds > 60)
+                {
+                    Player = "";
+                }
+            }
         }
 
         public void Render(RenderTarget target)
@@ -110,7 +138,10 @@ namespace KinectLight.Core
             target.Transform = Matrix3x2.Identity;
             target.DrawText("Player: " + Player, TextFormat, new RectangleF(5, 5, 800, 70), SceneColorBrush);
             target.DrawText("Score: " + Score, TextFormat, new RectangleF(5, 80, 800, 70), SceneColorBrush);
-            
+
+            if (Player != "")
+                target.DrawText((60d - (DateTime.Now - PlayerStartTime).TotalSeconds).ToString("00.0"), TextFormat, new RectangleF((float)(Width / 2) - 20, 15, 800, 70), SceneColorBrush);
+
         }
 
         public void Dispose()

@@ -25,11 +25,13 @@ namespace KinectLight.Core
         {
             sensor = KinectSensor.KinectSensors.FirstOrDefault(s => s.Status == KinectStatus.Connected);
 
-            LeftPos.X = 100;
-            LeftPos.Y = 200;
+            LeftPos.X = 400;
+            LeftPos.Y = 400;
 
-            RightPos.X = 300;
-            RightPos.Y = 200;
+            RightPos.X = 900;
+            RightPos.Y = 400;
+
+
 
             if (sensor != null)
             {
@@ -55,7 +57,7 @@ namespace KinectLight.Core
                                 {
                                     var res = new Skeleton[frame.SkeletonArrayLength];
                                     frame.CopySkeletonDataTo(res);
-                                    return res.FirstOrDefault(r => r.TrackingState != SkeletonTrackingState.NotTracked);
+                                    return res.Where(r => r.TrackingState == SkeletonTrackingState.Tracked).OrderBy(r => r.Position.Z).FirstOrDefault();
                                 }
                                 else
                                     return null;

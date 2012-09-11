@@ -47,16 +47,20 @@ namespace KinectLight.Core
                 Fill = new SolidColorBrush(d2dRenderTarget, Colors.Green);
                 Stroke = new SolidColorBrush(d2dRenderTarget, Colors.Azure);
                 initialized = true;
-                texture = MainGame.LoadFromFile(d2dRenderTarget, "c:\apa.jpg");
+               texture = MainGame.LoadFromFile(d2dRenderTarget, @"C:\git\KinectLight\resources\Logo_EDGE_40.bmp");
             }
         }
 
         internal void Render(RenderTarget d2dRenderTarget)
         {
-            
+
+            InitializeResources(d2dRenderTarget);
+
             d2dRenderTarget.Transform = Matrix.Translation(Position);
             d2dRenderTarget.DrawBitmap(texture,1, BitmapInterpolationMode.Linear);
+            //d2dRenderTarget.FillRectangle(new RectangleF(-20, -20, 20, 20), Fill);
             
+            //d2dRenderTarget.DrawRectangle(new RectangleF(-20, -20, 20, 20), Stroke);
         }
     }
 }

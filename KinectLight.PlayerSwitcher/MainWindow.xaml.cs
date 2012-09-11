@@ -29,7 +29,7 @@ namespace KinectLight.PlayerSwitcher
         {
             HttpClient c = new HttpClient();
 
-            c.PutAsync("http://localhost:8080/api/kinectlight/changeplayer/" + tbPlayer.Text, new StringContent("")).Wait();
+            c.GetAsync("http://localhost:8080/api/kinectlight/changeplayer/" + tbPlayer.Text).Wait();
         }
     }
 }
