@@ -33,7 +33,7 @@ namespace KinectLight.Core
             {
                 if (!string.IsNullOrEmpty(_player))
                 {
-                    _scoreApi.PostScoreAsync<ScoreDto>(new ScoreDto { points = (Score*10).ToString() }, Player, "kinectgame");
+                    _scoreApi.PostScoreAsync<ScoreDto>(new ScoreDto { points = (Score).ToString() }, Player, "kinectgame");
 
                 }
 
